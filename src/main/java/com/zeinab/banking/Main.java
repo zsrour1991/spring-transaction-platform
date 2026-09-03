@@ -4,6 +4,10 @@ import com.zeinab.banking.exception.InsufficientBalanceException;
 import com.zeinab.banking.model.*;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,6 +57,19 @@ public class Main {
 
         System.out.println(customer1 == customer2);
         System.out.println(customer1.equals(customer2));
+
+        Set<String> a=new HashSet<>();
+        a.add("a12");
+        a.add("a13");
+        a.add("a12");
+        System.out.println("Size of a: "+a.size());
+
+        Map<String,BankAccount> accountMap=new HashMap<>();
+        accountMap.put("SAV-001",savings);
+        accountMap.put("CUR-001",current);
+        BankAccount findBankAccount=accountMap.get("SAV-001");
+        System.out.println("Find Account"+findBankAccount.getBalance());
+        
 
     }
 }
