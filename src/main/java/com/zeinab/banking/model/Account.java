@@ -1,5 +1,7 @@
 package com.zeinab.banking.model;
 
+import com.zeinab.banking.exception.InsufficientBalanceException;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +39,11 @@ public abstract class Account implements BankAccount{
 
     public void withdraw(BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Withdrawal amount must be greater than zero");
+            throw new InsufficientBalanceException("Withdrawal amount must be greater than zero");
         }
 
         if (amount.compareTo(balance) > 0) {
-            throw new IllegalArgumentException("Insufficient balance");
+            throw new InsufficientBalanceException("Insufficient balance");
         }
 
         balance = balance.subtract(amount);

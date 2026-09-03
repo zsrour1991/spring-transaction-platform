@@ -1,5 +1,7 @@
 package com.zeinab.banking.model;
 
+import com.zeinab.banking.exception.InsufficientBalanceException;
+
 import java.math.BigDecimal;
 
 public class CurrentAccount extends Account {
@@ -20,13 +22,13 @@ public class CurrentAccount extends Account {
         BigDecimal availableAmount = getBalance().add(overdraftLimit);
 
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException(
+            throw new InsufficientBalanceException(
                     "Withdrawal amount must be greater than zero"
             );
         }
 
         if (amount.compareTo(availableAmount) > 0) {
-            throw new IllegalArgumentException(
+            throw new InsufficientBalanceException(
                     "Overdraft limit exceeded"
             );
         }

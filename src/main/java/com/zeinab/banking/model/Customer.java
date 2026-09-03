@@ -1,11 +1,13 @@
 package com.zeinab.banking.model;
 
+import java.util.Objects;
+
 public class Customer {
 
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private final String id;
+    private final String firstName;
+    private final String lastName;
+    private final String email;
 
     public Customer(
             String id,
@@ -33,5 +35,23 @@ public class Customer {
 
     public String getEmail() {
         return email;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
